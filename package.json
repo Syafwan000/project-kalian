@@ -1,0 +1,29 @@
+{
+  "name": "wpu-proka",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "prettier --plugin=prettier-plugin-tailwindcss --check .",
+    "format": "prettier --plugin=prettier-plugin-tailwindcss --write ."
+  },
+  "dependencies": {
+    "axios": "^1.6.0",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "tailwindcss": "^3.3.5",
+    "vite": "^4.4.5"
+  }
+}
