@@ -12,7 +12,9 @@ const project = useProject();
             <div
                 class="flex flex-col items-start justify-between space-y-3 pb-4 sm:flex-row sm:items-center sm:space-y-0">
                 <template v-if="project.selectedDate == null">
-                    <p><span class="font-bold">Sort:</span> {{ project.sort }}</p>
+                    <div class="flex space-x-3">
+                        <p><span class="font-bold">Showing:</span> {{ project.season }} ({{ project.sort }})</p>
+                    </div>
                     <div class="flex flex-row-reverse sm:flex-row">
                         <div class="space-x-3">
                             <button
@@ -58,8 +60,7 @@ const project = useProject();
                     <h3></h3>
                 </template>
                 <template v-else>
-                    <h3>Username</h3>
-                    <h3>Link</h3>
+                    <h3>{{ project.season }}</h3>
                     <h3></h3>
                 </template>
             </div>

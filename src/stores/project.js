@@ -65,7 +65,11 @@ export const useProject = defineStore('project', () => {
     };
 
     const setSelectedProject = (data) => {
-        selectedProject.value = data;
+        if(data == null) {
+            selectedProject.value = null;
+        } else {
+            selectedProject.value = data;
+        }
     }
     // const getData = ref([]);
     // const project = ref([]);

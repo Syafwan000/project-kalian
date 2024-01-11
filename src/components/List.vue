@@ -22,7 +22,6 @@ onMounted(() => {
         </template>
         <template v-else>
             <p class="z-10 font-medium">{{ projects.username }}</p>
-            <p class="z-10 font-medium">{{ projects.link }}</p>
         </template>
         <div class="rounded-full bg-black p-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="w-6 h-6 rotate-180 p-1">
