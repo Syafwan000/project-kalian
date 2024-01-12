@@ -12,7 +12,7 @@ const sidebar = useSidebar();
 <template>
     <div class="antialiased">
         <Season v-if="project.season == null" />
-    
+
         <div v-if="project.season != null" class="flex">
             <Sidebar v-if="sidebar.hidden" />
             <div class="flex flex-grow flex-col">

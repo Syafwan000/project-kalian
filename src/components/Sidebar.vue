@@ -11,7 +11,7 @@ const project = useProject();
 
 <template>
     <div
-    class="fixed top-0 z-50 flex h-screen w-full flex-col justify-between space-y-8 bg-zinc-100 sm:w-[300px] xl:sticky">
+        class="fixed top-0 z-50 flex h-screen w-full flex-col justify-between space-y-8 bg-zinc-100 sm:w-[300px] xl:sticky">
         <div>
             <div class="flex items-center space-x-5 border-b border-zinc-300 px-8 py-3">
                 <img class="h-12 w-12" :src="LogoWPU" alt="WPU" />
@@ -28,7 +28,7 @@ const project = useProject();
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
                             : 'hover:bg-zinc-400/30'
                     "
-                    class="mb-4 flex items-center space-x-5 rounded-2xl bg-zinc-200 px-6 py-3 text-lg font-semibold shadow-sm shadow-black/20 text-black"
+                    class="mb-4 flex items-center space-x-5 rounded-2xl bg-zinc-200 px-6 py-3 text-lg font-semibold text-black shadow-sm shadow-black/20"
                     to="/">
                     <svg
                         :stroke="route.name == 'Home' ? 'white' : 'black'"
@@ -51,7 +51,7 @@ const project = useProject();
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
                             : 'hover:bg-zinc-400/30'
                     "
-                    class="flex items-center space-x-5 rounded-2xl bg-zinc-200 px-6 py-3 text-lg font-semibold shadow-sm shadow-black/20 text-black"
+                    class="flex items-center space-x-5 rounded-2xl bg-zinc-200 px-6 py-3 text-lg font-semibold text-black shadow-sm shadow-black/20"
                     to="/bookmark">
                     <svg
                         :stroke="route.name == 'Bookmark' ? 'white' : 'black'"
@@ -68,10 +68,21 @@ const project = useProject();
                     </svg>
                     <div class="text-base">Bookmark</div>
                 </router-link>
-                <div class="w-full h-[2px] bg-zinc-300 my-5 rounded-full"></div>
-                <button @click="project.setSeason(null)" class="flex items-center space-x-5 rounded-2xl bg-red-500 px-6 py-3 text-lg font-semibold shadow-sm shadow-red-500/20 text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                <div class="my-5 h-[2px] w-full rounded-full bg-zinc-300"></div>
+                <button
+                    @click="project.setSeason(null)"
+                    class="flex items-center space-x-5 rounded-2xl bg-red-500 px-6 py-3 text-lg font-semibold text-white shadow-sm shadow-red-500/20">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="h-5 w-5">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
                     </svg>
                     <div class="text-sm">Change Season</div>
                 </button>

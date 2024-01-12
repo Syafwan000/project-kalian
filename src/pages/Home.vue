@@ -12,9 +12,7 @@ const project = useProject();
             <div
                 class="flex flex-col items-start justify-between space-y-3 pb-4 sm:flex-row sm:items-center sm:space-y-0">
                 <template v-if="project.selectedDate == null">
-                    <div class="flex space-x-3">
-                        <p><span class="font-bold">Showing:</span> {{ project.season }} ({{ project.sort }})</p>
-                    </div>
+                    <h3 class="font-bold">{{ project.season }}</h3>
                     <div class="flex flex-row-reverse sm:flex-row">
                         <div class="space-x-3">
                             <button
@@ -43,9 +41,20 @@ const project = useProject();
                     </div>
                 </template>
                 <template v-else>
-                    <button @click="project.setSelectedDate(null)" class="flex justify-center items-center text-sm bg-black text-white rounded-full pl-2 pr-4 py-1.5 shadow-sm shadow-black/20">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="white" class="w-6 h-6 p-1">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    <button
+                        @click="project.setSelectedDate(null)"
+                        class="flex items-center justify-center rounded-full bg-black py-1.5 pl-2 pr-4 text-sm text-white shadow-sm shadow-black/20">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="2"
+                            stroke="white"
+                            class="h-6 w-6 p-1">
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M15.75 19.5L8.25 12l7.5-7.5" />
                         </svg>
                         Back
                     </button>
@@ -65,8 +74,18 @@ const project = useProject();
                 </template>
             </div>
             <div v-if="project.projects" class="flex flex-col space-y-4">
-                <List v-if="project.selectedDate == null" v-for="(proj, index) in project.projects" @click="project.setSelectedDate(proj)" :data="proj" :number="index + 1"></List>
-                <List v-else v-for="(proj, index) in project.selectedDate" @click="project.setSelectedProject(proj)" :projects="proj" :number="index + 1"></List>
+                <List
+                    v-if="project.selectedDate == null"
+                    v-for="(proj, index) in project.projects"
+                    @click="project.setSelectedDate(proj)"
+                    :data="proj"
+                    :number="index + 1"></List>
+                <List
+                    v-else
+                    v-for="(proj, index) in project.selectedDate"
+                    @click="project.setSelectedProject(proj)"
+                    :projects="proj"
+                    :number="index + 1"></List>
             </div>
             <div v-else class="flex h-[500px] items-center justify-center">
                 <h1 class="text-2xl font-bold text-zinc-400">Data Not Found</h1>

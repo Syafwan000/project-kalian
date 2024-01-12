@@ -16,8 +16,8 @@ export const useProject = defineStore('project', () => {
             .get('/all.json')
             .then((res) => {
                 listProject.value = {
-                    data: res.data.data, 
-                    dataLength: res.data.data.length
+                    data: res.data.data,
+                    dataLength: res.data.data.length,
                 };
 
                 getProjectBySeason();
@@ -30,17 +30,19 @@ export const useProject = defineStore('project', () => {
     });
 
     const getProjectBySeason = () => {
-        filtered.value = listProject.value.data.filter(item => item.season === season.value).pop();
-        projects.value = filtered.value.dates.reverse();
-    }
+        filtered.value = listProject.value.data
+            .filter((item) => item.season === season.value)
+            .pop();
+        if(filtered.value != null) { projects.value = filtered.value.dates.reverse() }
+    };
 
     const getProjectReversed = (sortBy) => {
         sort.value = sortBy;
         projects.value = filtered.value.dates.reverse();
-    }
+    };
 
     const setSeason = (selected) => {
-        if(selected == null) {
+        if (selected == null) {
             localStorage.removeItem('season');
             season.value = null;
             filtered.value = null;
@@ -54,10 +56,10 @@ export const useProject = defineStore('project', () => {
 
             getProjectBySeason();
         }
-    }
+    };
 
     const setSelectedDate = (data) => {
-        if(data == null) {
+        if (data == null) {
             selectedDate.value = null;
         } else {
             selectedDate.value = data.projects;
@@ -65,12 +67,12 @@ export const useProject = defineStore('project', () => {
     };
 
     const setSelectedProject = (data) => {
-        if(data == null) {
+        if (data == null) {
             selectedProject.value = null;
         } else {
             selectedProject.value = data;
         }
-    }
+    };
     // const getData = ref([]);
     // const project = ref([]);
     // const seasons = ref([]);
@@ -108,16 +110,16 @@ export const useProject = defineStore('project', () => {
 
     // return { getData, project, seasons, status, getProject, filterProject };
 
-    return { 
-        listProject, 
-        selectedDate, 
-        selectedProject, 
-        projects, 
-        season, 
+    return {
+        listProject,
+        selectedDate,
+        selectedProject,
+        projects,
+        season,
         sort,
         getProjectReversed,
         setSeason,
         setSelectedDate,
-        setSelectedProject
+        setSelectedProject,
     };
 });

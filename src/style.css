@@ -9,7 +9,7 @@
 }
 
 ::-webkit-scrollbar {
-    @apply w-1 h-1;
+    @apply h-1 w-1;
 }
 
 ::-webkit-scrollbar-track {

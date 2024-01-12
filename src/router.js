@@ -11,8 +11,8 @@ const routes = [
     {
         path: '/bookmark',
         name: 'Bookmark',
-        component: Bookmark
-    }
+        component: Bookmark,
+    },
 ];
 
 const router = createRouter({
