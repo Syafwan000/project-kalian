@@ -4,11 +4,14 @@ import { onMounted, ref } from 'vue';
 export const useSidebar = defineStore('sidebar', () => {
     const hidden = ref(true);
     const dropped = ref(false);
+    const screens = ref(null);
 
     onMounted(() => {
+        screens.value = screen.width;
         screen.width <= 1280 ? (hidden.value = false) : (hidden.value = true);
 
         window.addEventListener('resize', () => {
+            screens.value = screen.width;
             screen.width <= 1280 ? (hidden.value = false) : (hidden.value = true);
         });
     });
@@ -21,5 +24,5 @@ export const useSidebar = defineStore('sidebar', () => {
         hidden.value = !hidden.value;
     };
 
-    return { dropped, hidden, setDrop, setHidden };
+    return { dropped, hidden, screens, setDrop, setHidden };
 });

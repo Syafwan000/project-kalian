@@ -11,7 +11,7 @@ const project = useProject();
 
 <template>
     <div
-        class="fixed top-0 z-50 flex h-screen w-full flex-col justify-between space-y-8 bg-zinc-100 sm:w-[300px] xl:sticky">
+    class="fixed top-0 z-50 flex h-screen w-full flex-col justify-between space-y-8 bg-zinc-100 sm:w-[300px] xl:sticky">
         <div>
             <div class="flex items-center space-x-5 border-b border-zinc-300 px-8 py-3">
                 <img class="h-12 w-12" :src="LogoWPU" alt="WPU" />
@@ -22,6 +22,7 @@ const project = useProject();
             </div>
             <div class="mt-8 flex flex-col px-12">
                 <router-link
+                    @click="sidebar.screens <= 1280 && sidebar.setHidden()"
                     :class="
                         route.name == 'Home'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
@@ -44,6 +45,7 @@ const project = useProject();
                     <div class="text-base">Home</div>
                 </router-link>
                 <router-link
+                    @click="sidebar.screens <= 1280 && sidebar.setHidden()"
                     :class="
                         route.name == 'Bookmark'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
