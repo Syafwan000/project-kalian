@@ -3,10 +3,10 @@ import Navbar from '@/components/Navbar.vue';
 import Sidebar from '@/components/Sidebar.vue';
 import Season from '@/components/Season.vue';
 import { useProject } from '@/stores/project';
-import { useSidebar } from './stores/sidebar';
+import { useMisc } from '@/stores/misc';
 
 const project = useProject();
-const sidebar = useSidebar();
+const misc = useMisc();
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const sidebar = useSidebar();
         <Season v-if="project.season == null" />
 
         <div v-if="project.season != null" class="flex">
-            <Sidebar v-if="sidebar.hidden" />
+            <Sidebar v-if="misc.hidden" />
             <div class="flex flex-grow flex-col">
                 <Navbar :class="`sticky top-0`" />
                 <div class="px-4 py-8 xl:px-8">

@@ -9,6 +9,7 @@ export const useProject = defineStore('project', () => {
     const projects = ref(null);
     const selectedDate = ref(null);
     const selectedProject = ref(null);
+    const date = ref(null);
     const sort = ref('Latest');
 
     onMounted(() => {
@@ -33,7 +34,9 @@ export const useProject = defineStore('project', () => {
         filtered.value = listProject.value.data
             .filter((item) => item.season === season.value)
             .pop();
-        if(filtered.value != null) { projects.value = filtered.value.dates.reverse() }
+        if (filtered.value != null) {
+            projects.value = filtered.value.dates.reverse();
+        }
     };
 
     const getProjectReversed = (sortBy) => {
@@ -62,6 +65,7 @@ export const useProject = defineStore('project', () => {
         if (data == null) {
             selectedDate.value = null;
         } else {
+            date.value = data.date;
             selectedDate.value = data.projects;
         }
     };
@@ -73,6 +77,7 @@ export const useProject = defineStore('project', () => {
             selectedProject.value = data;
         }
     };
+
     // const getData = ref([]);
     // const project = ref([]);
     // const seasons = ref([]);
@@ -115,6 +120,7 @@ export const useProject = defineStore('project', () => {
         selectedDate,
         selectedProject,
         projects,
+        date,
         season,
         sort,
         getProjectReversed,

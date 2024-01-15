@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
 import { onMounted, ref } from 'vue';
 
-export const useSidebar = defineStore('sidebar', () => {
+export const useMisc = defineStore('misc', () => {
     const hidden = ref(true);
-    const dropped = ref(false);
     const screens = ref(null);
+    const dropped = ref(false);
+    const isLoaded = ref(false);
 
     onMounted(() => {
         screens.value = screen.width;
@@ -16,13 +17,9 @@ export const useSidebar = defineStore('sidebar', () => {
         });
     });
 
-    const setDrop = () => {
-        dropped.value = !dropped.value;
-    };
+    const setDrop = () => dropped.value = !dropped.value;
+    const setHidden = () => hidden.value = !hidden.value;
+    const setImageLoaded = (load) => isLoaded.value = load;
 
-    const setHidden = () => {
-        hidden.value = !hidden.value;
-    };
-
-    return { dropped, hidden, screens, setDrop, setHidden };
+    return { dropped, hidden, screens, isLoaded, setDrop, setHidden, setImageLoaded };
 });

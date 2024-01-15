@@ -1,10 +1,10 @@
 <script setup>
 import LogoWPU from '@/assets/images/wpu.png';
 import { useRoute } from 'vue-router';
-import { useSidebar } from '@/stores/sidebar';
+import { useMisc } from '@/stores/misc';
 import { useProject } from '@/stores/project';
 
-const sidebar = useSidebar();
+const misc = useMisc();
 const route = useRoute();
 const project = useProject();
 </script>
@@ -13,6 +13,7 @@ const project = useProject();
     <div
         class="fixed top-0 z-50 flex h-screen w-full flex-col justify-between space-y-8 bg-zinc-100 sm:w-[300px] xl:sticky">
         <div>
+            <!-- Logo -->
             <div class="flex items-center space-x-5 border-b border-zinc-300 px-8 py-3">
                 <img class="h-12 w-12" :src="LogoWPU" alt="WPU" />
                 <div class="flex flex-col">
@@ -20,9 +21,11 @@ const project = useProject();
                     <p>Project Kalian</p>
                 </div>
             </div>
+
+            <!-- List Menu -->
             <div class="mt-8 flex flex-col px-12">
                 <router-link
-                    @click="sidebar.screens <= 1280 && sidebar.setHidden()"
+                    @click="misc.screens <= 1280 && misc.setHidden()"
                     :class="
                         route.name == 'Home'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
@@ -45,7 +48,7 @@ const project = useProject();
                     <div class="text-base">Home</div>
                 </router-link>
                 <router-link
-                    @click="sidebar.screens <= 1280 && sidebar.setHidden()"
+                    @click="misc.screens <= 1280 && misc.setHidden()"
                     :class="
                         route.name == 'Bookmark'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
@@ -88,9 +91,11 @@ const project = useProject();
                 </button>
             </div>
         </div>
+
+        <!-- Sidebar Toggler Hidden -->
         <div class="ml-auto pb-6 pr-6">
             <button
-                @click="sidebar.setHidden()"
+                @click="misc.setHidden()"
                 class="rounded-2xl bg-zinc-200 p-4 shadow-sm shadow-black/20 outline-none hover:bg-zinc-400/30">
                 <svg
                     stroke="black"

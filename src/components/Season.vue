@@ -1,15 +1,14 @@
 <script setup>
 import LogoWPU from '@/assets/images/wpu.png';
 import { useProject } from '@/stores/project';
-import { useSidebar } from '@/stores/sidebar';
-import { ref } from 'vue';
+import { useMisc } from '@/stores/misc';
 
-const sidebar = useSidebar();
+const misc = useMisc();
 const project = useProject();
 
 const chooseSeason = (season) => {
     project.setSeason(season);
-    sidebar.screens <= 1280 && sidebar.setHidden();
+    misc.screens <= 1280 && misc.setHidden();
 };
 </script>
 
@@ -17,6 +16,7 @@ const chooseSeason = (season) => {
     <div class="relative h-screen w-full bg-zinc-100">
         <div
             class="absolute left-1/2 top-1/2 flex w-[350px] -translate-x-1/2 -translate-y-1/2 flex-col border-zinc-300 px-8 py-3">
+            <!-- Logo -->
             <div class="flex justify-center space-x-5">
                 <img class="h-16 w-16" :src="LogoWPU" alt="WPU" />
                 <div class="flex flex-col">
@@ -24,6 +24,8 @@ const chooseSeason = (season) => {
                     <p class="text-xl">Project Kalian</p>
                 </div>
             </div>
+
+            <!-- Choose Season -->
             <div
                 class="mx-auto mt-8 h-[315px] w-[250px] space-y-3 overflow-y-auto rounded-md bg-zinc-200/30 p-3"
                 :class="project.listProject.dataLength > 5 ? 'h-[315px]' : 'h-full'">
