@@ -1,14 +1,24 @@
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 import { useProject } from '@/stores/project';
 
 const { data, projects, number } = defineProps(['data', 'number', 'projects']);
+const route = useRoute();
 const project = useProject();
 const numbering = ref(null);
 
 onMounted(() => {
     number < 10 ? (numbering.value = '0' + number) : (numbering.value = number);
 });
+
+const dateFormatter = (raw) => {
+    let pattern;
+    let split = raw.split('-');
+    pattern = split[0] + '-' + split[1];
+
+    return pattern;
+};
 </script>
 
 <template>
@@ -19,17 +29,26 @@ onMounted(() => {
             numbering
         }}</span>
 
-        <!-- Body Table Group Project -->
-        <template v-if="project.selectedDate == null">
-            <p class="z-10 font-medium">{{ project.season }}</p>
-            <p class="z-10 font-medium">{{ data.date }}</p>
-            <p class="z-10 font-medium">{{ data.projects.length }} Showcased</p>
-        </template>
+        <template v-if="route.name == 'Home'">
+            <!-- Body Table Group Project -->
+            <template v-if="project.selectedDate == null">
+                <p v-if="project.season" class="z-10 font-medium">{{ project.season }}</p>
+                <p v-if="data.date" class="z-10 font-medium">{{ data.date }}</p>
+                <p v-if="data.projects.length" class="z-10 font-medium">
+                    {{ data.projects.length }} Showcased
+                </p>
+            </template>
 
-        <!-- Body Table Project Detailed -->
+            <!-- Body Table Project Detailed -->
+            <template v-else>
+                <p class="z-10 font-medium">{{ projects.username }}</p>
+                <p class="z-10 font-medium">{{ project.date }}</p>
+            </template>
+        </template>
         <template v-else>
+            <!-- Body Table Bookmark -->
+            <p class="z-10 font-medium">{{ dateFormatter(projects.image) }}</p>
             <p class="z-10 font-medium">{{ projects.username }}</p>
-            <p class="z-10 font-medium">{{ project.date }}</p>
         </template>
 
         <!-- Icon -->

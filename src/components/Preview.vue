@@ -1,17 +1,24 @@
 <script setup>
-import { useRoute } from 'vue-router';
 import { useProject } from '@/stores/project';
 import { useMisc } from '@/stores/misc';
-import { ref } from 'vue';
 
-const route = useRoute();
 const project = useProject();
 const misc = useMisc();
-const isLoaded = ref(false);
-const isSaved = ref(false);
 
-const imageLoaded = () => (misc.setImageLoaded(true));
-const savedProject = () => (isSaved.value = !isSaved.value);
+const imageLoaded = () => misc.setImageLoaded(true);
+const savedProject = () => {
+    let savedProject = project.getSavedProject();
+
+    if (savedProject != null) {
+        if (savedProject.find((item) => item.image == project.selectedProject.image)) {
+            misc.setProjectSaved(true);
+        } else {
+            misc.setProjectSaved(false);
+        }
+    }
+
+    project.setSavedProject();
+};
 const closePreview = () => {
     misc.setImageLoaded(false);
     project.setSelectedProject(null);
@@ -20,11 +27,9 @@ const closePreview = () => {
 
 <template>
     <template v-if="project.selectedProject != null">
-
         <!-- Desktop -->
         <div
             class="sticky top-28 hidden h-[500px] w-2/6 flex-col rounded-2xl bg-zinc-200 shadow-md shadow-zinc-400/20 xl:flex">
-
             <!-- Desktop Image Loaded -->
             <div
                 v-show="misc.isLoaded"
@@ -38,7 +43,7 @@ const closePreview = () => {
                     @click="savedProject"
                     class="absolute bottom-5 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs shadow-lg shadow-black/20 outline-none">
                     <svg
-                        v-if="isSaved"
+                        v-if="misc.isSaved"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="white"
@@ -105,7 +110,9 @@ const closePreview = () => {
         <div
             class="fixed bottom-0 left-1/2 z-50 flex h-[500px] w-full -translate-x-1/2 flex-col rounded-t-2xl bg-zinc-300 sm:w-[550px] xl:hidden">
             <!-- Mobile Image Loaded -->
-            <div v-show="misc.isLoaded" class="relative mx-auto flex h-[260px] w-full justify-center">
+            <div
+                v-show="misc.isLoaded"
+                class="relative mx-auto flex h-[260px] w-full justify-center">
                 <img
                     @load="imageLoaded"
                     class="mt-0 rounded-t-2xl sm:rounded-2xl"
@@ -131,7 +138,7 @@ const closePreview = () => {
                     @click="savedProject"
                     class="absolute bottom-5 right-5 flex h-8 w-8 items-center justify-center rounded-full bg-black text-xs shadow-lg shadow-black/20 outline-none">
                     <svg
-                        v-if="isSaved"
+                        v-if="misc.isSaved"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="white"
@@ -209,7 +216,6 @@ const closePreview = () => {
     </template>
     <div
         v-else
-        v-if="route.name == 'Home'"
         class="sticky top-28 hidden h-[500px] w-2/6 items-center justify-center rounded-2xl bg-zinc-200 shadow-md shadow-zinc-400/20 xl:flex">
         <h1 class="text-2xl font-bold text-zinc-400">Data Not Found</h1>
     </div>

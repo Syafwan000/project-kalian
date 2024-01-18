@@ -7,6 +7,10 @@ import { useProject } from '@/stores/project';
 const misc = useMisc();
 const route = useRoute();
 const project = useProject();
+const sideMenuHandler = () => {
+    misc.screens <= 1280 && misc.setHidden();
+    project.setSelectedProject(null);
+};
 </script>
 
 <template>
@@ -25,7 +29,7 @@ const project = useProject();
             <!-- List Menu -->
             <div class="mt-8 flex flex-col px-12">
                 <router-link
-                    @click="misc.screens <= 1280 && misc.setHidden()"
+                    @click="sideMenuHandler"
                     :class="
                         route.name == 'Home'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'
@@ -48,7 +52,7 @@ const project = useProject();
                     <div class="text-base">Home</div>
                 </router-link>
                 <router-link
-                    @click="misc.screens <= 1280 && misc.setHidden()"
+                    @click="sideMenuHandler"
                     :class="
                         route.name == 'Bookmark'
                             ? 'hover:bg-black hover:shadow-lg hover:shadow-black/20'

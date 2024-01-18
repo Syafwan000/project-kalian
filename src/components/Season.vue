@@ -68,7 +68,27 @@ const chooseSeason = (season) => {
                     </svg>
                 </div>
             </div>
-            <h3 class="mt-12 text-center text-sm">&copy; Web Programming Unpas</h3>
+            <div class="mt-12 space-y-2 text-center text-sm">
+                <h3>
+                    <span class="font-bold">Web</span> by
+                    <a
+                        class="text-blue-400 hover:text-blue-500"
+                        target="_blank"
+                        href="https://github.com/Syafwan000"
+                        >Syafwan000</a
+                    >
+                </h3>
+                <h3>
+                    Thanks for
+                    <span class="font-bold">API</span> by
+                    <a
+                        class="text-blue-400 hover:text-blue-500"
+                        target="_blank"
+                        href="https://github.com/reacto11mecha"
+                        >reacto_mecha</a
+                    >
+                </h3>
+            </div>
         </div>
     </div>
 </template>

@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { defineStore } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { onMounted, ref } from 'vue';
+import { useMisc } from './misc';
 
 export const useProject = defineStore('project', () => {
+    const misc = useMisc();
     const listProject = ref({});
     const season = ref(null);
     const filtered = ref(null);
     const projects = ref(null);
     const selectedDate = ref(null);
     const selectedProject = ref(null);
+    const savedProject = ref(null);
     const date = ref(null);
     const sort = ref('Latest');
 
@@ -42,6 +45,12 @@ export const useProject = defineStore('project', () => {
     const getProjectReversed = (sortBy) => {
         sort.value = sortBy;
         projects.value = filtered.value.dates.reverse();
+    };
+
+    const getSavedProject = () => {
+        savedProject.value = JSON.parse(localStorage.getItem('bookmark'));
+
+        return savedProject.value;
     };
 
     const setSeason = (selected) => {
@@ -78,54 +87,44 @@ export const useProject = defineStore('project', () => {
         }
     };
 
-    // const getData = ref([]);
-    // const project = ref([]);
-    // const seasons = ref([]);
-    // const status = ref(null);
+    const setSavedProject = () => {
+        let projectToSave = [];
+        let removeProject;
 
-    // const getProject = (sort = 'Latest', filter) => {
-    //     axios
-    //         .get(`/projects-by-${sort.toLowerCase()}.json`)
-    //         .then((res) => {
-    //             status.value = sort;
-    //             getData.value = res.data.data;
-    //             filterProject(filter);
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
+        projectToSave = JSON.parse(localStorage.getItem('bookmark')) || [];
+        removeProject = projectToSave.findIndex(
+            (item) => item.image === selectedProject.value.image,
+        );
 
-    //     return project;
-    // };
+        if (projectToSave.find((item) => item.image == selectedProject.value.image)) {
+            misc.setProjectSaved(false);
 
-    // const filterProject = (filter) => {
-    //     let totalData = getData.value.length - filter;
-    //     project.value = getData.value.slice(getData, -totalData);
+            let afterRemove = projectToSave
+                .slice(0, removeProject)
+                .concat(projectToSave.slice(removeProject + 1));
+            localStorage.setItem('bookmark', JSON.stringify(afterRemove));
+        } else {
+            misc.setProjectSaved(true);
 
-    //     return project;
-    // };
-
-    // // const getSeasons = () => {
-    // //     getData.value.forEach((p, i) => {
-    // //         seasons.value[i] = p.season;
-    // //     });
-
-    // //     return seasons;
-    // // };
-
-    // return { getData, project, seasons, status, getProject, filterProject };
+            projectToSave.push(selectedProject.value);
+            localStorage.setItem('bookmark', JSON.stringify(projectToSave));
+        }
+    };
 
     return {
         listProject,
         selectedDate,
         selectedProject,
         projects,
+        savedProject,
         date,
         season,
         sort,
         getProjectReversed,
+        getSavedProject,
         setSeason,
         setSelectedDate,
         setSelectedProject,
+        setSavedProject,
     };
 });

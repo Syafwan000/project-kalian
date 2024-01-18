@@ -6,6 +6,7 @@ export const useMisc = defineStore('misc', () => {
     const screens = ref(null);
     const dropped = ref(false);
     const isLoaded = ref(false);
+    const isSaved = ref(false);
 
     onMounted(() => {
         screens.value = screen.width;
@@ -17,9 +18,20 @@ export const useMisc = defineStore('misc', () => {
         });
     });
 
-    const setDrop = () => dropped.value = !dropped.value;
-    const setHidden = () => hidden.value = !hidden.value;
-    const setImageLoaded = (load) => isLoaded.value = load;
+    const setDrop = () => (dropped.value = !dropped.value);
+    const setHidden = () => (hidden.value = !hidden.value);
+    const setImageLoaded = (load) => (isLoaded.value = load);
+    const setProjectSaved = (saved) => (isSaved.value = saved);
 
-    return { dropped, hidden, screens, isLoaded, setDrop, setHidden, setImageLoaded };
+    return {
+        dropped,
+        hidden,
+        screens,
+        isLoaded,
+        isSaved,
+        setDrop,
+        setHidden,
+        setImageLoaded,
+        setProjectSaved,
+    };
 });

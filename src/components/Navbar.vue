@@ -2,6 +2,7 @@
 import { useMisc } from '@/stores/misc';
 
 const misc = useMisc();
+const alertCoy = () => alert('Coming Soon Bwang Hwhwhwhw');
 </script>
 
 <template>
@@ -27,6 +28,7 @@ const misc = useMisc();
         <!-- Search Bar -->
         <div class="relative w-full">
             <input
+                @click="alertCoy"
                 class="w-full rounded-2xl bg-zinc-100 py-3.5 pl-14 pr-8 shadow-md shadow-zinc-400/30 outline-none placeholder:text-zinc-400 focus:ring-1 focus:ring-zinc-300"
                 type="text"
                 placeholder="What project are you looking for" />
@@ -45,7 +47,9 @@ const misc = useMisc();
         </div>
 
         <!-- Search Button -->
-        <button class="rounded-2xl bg-black px-4 shadow-lg shadow-black/20 outline-none">
+        <button
+            @click="alertCoy"
+            class="rounded-2xl bg-black px-4 shadow-lg shadow-black/20 outline-none">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

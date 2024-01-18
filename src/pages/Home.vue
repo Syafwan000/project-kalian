@@ -6,15 +6,29 @@ import { useProject } from '@/stores/project';
 
 const project = useProject();
 const misc = useMisc();
-const selectedDate = (proj) => project.setSelectedDate(proj);
+const backHandler = () => {
+    project.setSelectedDate(null);
+    project.setSelectedProject(null);
+};
+
 const selectedProject = (proj) => {
-    if(proj == project.selectedProject) {
+    let savedProject = project.getSavedProject();
+
+    if (savedProject != null) {
+        if (savedProject.find((item) => item.image == proj.image)) {
+            misc.setProjectSaved(true);
+        } else {
+            misc.setProjectSaved(false);
+        }
+    }
+
+    if (proj == project.selectedProject) {
         project.setSelectedProject(proj);
     } else {
         misc.setImageLoaded(false);
         project.setSelectedProject(proj);
     }
-}
+};
 </script>
 
 <template>
@@ -60,7 +74,7 @@ const selectedProject = (proj) => {
                         <span class="text-sm font-normal">{{ project.date }}</span>
                     </h3>
                     <button
-                        @click="project.setSelectedDate(null)"
+                        @click="backHandler"
                         class="flex items-center justify-center rounded-full bg-black py-1.5 pl-2 pr-4 text-sm text-white shadow-lg shadow-black/20">
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -104,7 +118,7 @@ const selectedProject = (proj) => {
                 <List
                     v-if="project.selectedDate == null"
                     v-for="(proj, index) in project.projects"
-                    @click="selectedDate(proj)"
+                    @click="project.setSelectedDate(proj)"
                     :data="proj"
                     :number="index + 1" />
 
@@ -118,8 +132,10 @@ const selectedProject = (proj) => {
             </div>
 
             <!-- Body Table Placeholder -->
-            <div v-else class="flex h-[500px] items-center justify-center">
-                <h1 class="text-2xl font-bold text-zinc-400">Data Not Found</h1>
+            <div v-else class="flex flex-col space-y-4">
+                <div
+                    v-for="n in 5"
+                    class="animate pulse h-[63px] w-full rounded-2xl bg-zinc-200"></div>
             </div>
         </div>
 
