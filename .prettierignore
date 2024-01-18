@@ -2,6 +2,7 @@
 node_modules
 package-lock.json
 package.json
+vercel.json
 README.md
 /public
 /index.html

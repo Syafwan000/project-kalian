@@ -20,6 +20,7 @@ export const useMisc = defineStore('misc', () => {
 
     const setDrop = () => (dropped.value = !dropped.value);
     const setHidden = () => (hidden.value = !hidden.value);
+    const setForceHidden = () => (hidden.value = false);
     const setImageLoaded = (load) => (isLoaded.value = load);
     const setProjectSaved = (saved) => (isSaved.value = saved);
 
@@ -33,5 +34,6 @@ export const useMisc = defineStore('misc', () => {
         setHidden,
         setImageLoaded,
         setProjectSaved,
+        setForceHidden
     };
 });

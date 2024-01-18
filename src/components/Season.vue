@@ -8,7 +8,7 @@ const project = useProject();
 
 const chooseSeason = (season) => {
     project.setSeason(season);
-    misc.screens <= 1280 && misc.setHidden();
+    misc.screens <= 1280 && misc.setForceHidden();
 };
 </script>
 

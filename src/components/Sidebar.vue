@@ -7,6 +7,7 @@ import { useProject } from '@/stores/project';
 const misc = useMisc();
 const route = useRoute();
 const project = useProject();
+
 const sideMenuHandler = () => {
     misc.screens <= 1280 && misc.setHidden();
     project.setSelectedProject(null);
