@@ -8,8 +8,6 @@ const project = useProject();
 const misc = useMisc();
 const saved = project.getSavedProject();
 
-console.log(saved);
-
 const selectedProject = (proj) => {
     let savedProject = project.getSavedProject();
 

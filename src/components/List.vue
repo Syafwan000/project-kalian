@@ -35,7 +35,7 @@ const dateFormatter = (raw) => {
                 <p v-if="project.season" class="z-10 font-medium">{{ project.season }}</p>
                 <p v-if="data.date" class="z-10 font-medium">{{ data.date }}</p>
                 <p v-if="data.projects.length" class="z-10 font-medium">
-                    {{ data.projects.length }} Showcased
+                    {{ data.projects.length }}
                 </p>
             </template>
 
