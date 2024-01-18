@@ -1,7 +1,5 @@
-# Vue 3 + Vite
+# ProKa - Project Kalian
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+ProKa, short for Project Kalian, is an innovative platform dedicated to showcasing outstanding projects curated from the talented viewers of Web Programming Unpas (WPU). This initiative aims to celebrate the creativity, skills, and diverse projects created by the vibrant community associated with WPU.
 
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+Big thanks to <a target="_blank" href="https://github.com/reacto11mecha">reacto_mecha</a> 🎇🎇🎇
