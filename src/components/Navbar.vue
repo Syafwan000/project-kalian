@@ -2,7 +2,7 @@
 import { useMisc } from '@/stores/misc';
 
 const misc = useMisc();
-const alertCoy = () => alert('Coming Soon Bwang Hwhwhwhw');
+const alertCoy = () => alert('Coming Soon :D');
 </script>
 
 <template>

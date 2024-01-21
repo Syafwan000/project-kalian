@@ -1,12 +1,23 @@
 <script setup>
 import Preview from '@/components/Preview.vue';
 import List from '@/components/List.vue';
+import { onMounted, ref, watch } from 'vue';
 import { useMisc } from '@/stores/misc';
 import { useProject } from '@/stores/project';
 
 const project = useProject();
 const misc = useMisc();
-const saved = project.getSavedProject();
+const saved = ref();
+
+onMounted(() => {
+    saved.value = project.getSavedProject();
+});
+
+watch(saved, () => {
+    setTimeout(() => {
+        saved.value = project.getSavedProject();
+    }, 10);
+});
 
 const selectedProject = (proj) => {
     let savedProject = project.getSavedProject();
